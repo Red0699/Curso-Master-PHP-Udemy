@@ -1,10 +1,10 @@
 <IfModule mod_rewrite.c>
-    # Activar rewrite 
-    RewriteEngine on
-    ErrorDocument 404 http://localhost/Master%20en%20PHP,%20SQL,%20POO,%20MVC,%20Laravel,%20Symfony,%20WordPress%20+/Proyecto%20PHP%20POO%20MVC%20%20y%20MySQL/error/
+# Activar rewrite
+RewriteEngine on
+ErrorDocument 404 http://localhost/master-php/proyecto-php-poo/error/index
 
-    RewriteCond %{SCRIPT_FILENAME} !-d
-    RewriteCond %{SCRIPT_FILENAME} !-f 
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-f
 
-    RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
 </IfModule>

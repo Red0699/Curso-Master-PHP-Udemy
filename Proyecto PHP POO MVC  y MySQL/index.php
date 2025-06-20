@@ -1,24 +1,25 @@
 <?php
-
 session_start();
-
 require_once 'autoload.php';
 require_once 'config/db.php';
 require_once 'config/parameters.php';
-require_once 'Views/layout/header.php';
-require_once 'Views/layout/sidebar.php';
+require_once 'helpers/utils.php';
+require_once 'views/layout/header.php';
+require_once 'views/layout/sidebar.php';
 
-function showError(){
+function show_error(){
 	$error = new errorController();
 	$error->index();
 }
 
 if(isset($_GET['controller'])){
 	$nombre_controlador = $_GET['controller'].'Controller';
+
 }elseif(!isset($_GET['controller']) && !isset($_GET['action'])){
 	$nombre_controlador = controller_default;
+	
 }else{
-	showError();
+	show_error();
 	exit();
 }
 
@@ -29,13 +30,15 @@ if(class_exists($nombre_controlador)){
 		$action = $_GET['action'];
 		$controlador->$action();
 	}elseif(!isset($_GET['controller']) && !isset($_GET['action'])){
-		$default_action = action_default;
-		$controlador->$default_action;
+		$action_default = action_default;
+		$controlador->$action_default();
 	}else{
-		showError();
+		show_error();
 	}
 }else{
-	showError();
+	show_error();
 }
 
-require_once 'Views/layout/footer.php';
+require_once 'views/layout/footer.php';
+
+
